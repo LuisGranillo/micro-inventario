@@ -1,5 +1,6 @@
 ﻿using micro_inventario.Datos;
 using micro_inventario.Modelo;
+using micro_inventario.Vistas;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -38,15 +39,18 @@ namespace micro_inventario.VistaModelo
         #region PROCESOS
         public async Task Mostrarproductos(StackLayout Carrilderecho, StackLayout Carrilizquierdo)
         {
+            var funcion = new Dproductos();
+            Listaproductos = await funcion.MostrarProductos();
             var box = new BoxView
             {
                 HeightRequest=60,
                
 
+
             };
+            Carrilizquierdo.Children.Clear();
+            Carrilderecho.Children.Clear();
             Carrilderecho.Children.Add(box);
-            var funcion = new Dproductos();
-            Listaproductos = await funcion.MostrarProductos();
             foreach(var item in Listaproductos)
             {
                 DibujarProductos(item, _index, Carrilderecho, Carrilizquierdo);
@@ -105,8 +109,14 @@ namespace micro_inventario.VistaModelo
             stak.Children.Add(labeldescripcion);
             stak.Children.Add(labelpeso);
             frame.Content = stak;
+            var tap = new TapGestureRecognizer();
+            tap.Tapped += async (object sender, EventArgs e) =>
+             {
+                 await Navigation.PushAsync(new Agregarcompra(item));
+ 
+             };
             carril.Children.Add(frame);
-
+            stak.GestureRecognizers.Add(tap);
         }
         public async Task ProcesoAsyncrono()
         {
