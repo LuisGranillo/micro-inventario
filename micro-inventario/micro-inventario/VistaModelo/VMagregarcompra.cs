@@ -13,14 +13,14 @@ namespace micro_inventario.VistaModelo
         #region VARIABLES
         int _Cantidad;
         string _Preciotexto;
-        public Mproductos parametrosrecibe { get; set; }
+        public Producto parametrosrecibe { get; set; }
         #endregion
         #region CONSTRUCTOR
-        public VMagregarcompra(INavigation navigation, Mproductos parametrosTrae)
+        public VMagregarcompra(INavigation navigation, Producto parametrosTrae)
         {
             Navigation = navigation;
             parametrosrecibe = parametrosTrae;
-            Preciotexto = "$" + parametrosrecibe.Precio;
+            Preciotexto = "$" + parametrosrecibe.precio;
         }
         #endregion
         #region OBJETOS
@@ -47,6 +47,7 @@ namespace micro_inventario.VistaModelo
         }
         #endregion
         #region COMANDOS
+        /*
         public async Task InsertarDc()
         {
             if (Cantidad == 0)
@@ -66,6 +67,7 @@ namespace micro_inventario.VistaModelo
             await funcion.InsertarDc(parametros);
             await Volver();
         }
+        */
         public async Task Volver()
         {
             await Navigation.PopAsync();
@@ -84,7 +86,7 @@ namespace micro_inventario.VistaModelo
         public ICommand Volvercommand => new Command(async () => await Volver());
         public ICommand Aumentarcommand => new Command(Aumentar);
         public ICommand Disminuircommand => new Command(Disminuir);
-        public ICommand Insertarcommand => new Command(async () => await InsertarDc());
+// public ICommand Insertarcommand => new Command(async () => await InsertarDc());
         #endregion
     }
 }

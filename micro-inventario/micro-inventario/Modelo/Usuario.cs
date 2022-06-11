@@ -6,7 +6,7 @@ using SQLiteNetExtensions.Attributes;
 
 namespace micro_inventario.Modelo
 {
-     class Usuario
+    public  class Usuario
     {
         [PrimaryKey, AutoIncrement]
         public int IdUsuario { get; set; }

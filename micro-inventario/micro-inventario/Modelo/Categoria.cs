@@ -8,7 +8,7 @@ using SQLiteNetExtensions.Attributes;
 
 namespace micro_inventario.Modelo
 {
-     class Categoria
+    public class Categoria
     {
 
         [PrimaryKey, AutoIncrement]

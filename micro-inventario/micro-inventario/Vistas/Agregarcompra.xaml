@@ -13,7 +13,7 @@
 
             <StackLayout Padding="36,15"
                      Spacing="20">
-                <Image Source="{Binding parametrosrecibe.Icono}"
+                <Image Source="{Binding parametrosrecibe.Imagen}"
                    Margin="0,0,0,30"
                    HeightRequest="130"/>
                 <Label Text="{Binding parametrosrecibe.Descripcion}"
@@ -22,7 +22,7 @@
                    TextColor="Black"/>
                 <Label
                     
-                Text="{Binding parametrosrecibe.Peso}"
+                Text="{Binding parametrosrecibe.Marca}"
                 CharacterSpacing="1"
                 TextColor="Gray"
                 Margin="0,-8,0,4"
@@ -106,7 +106,7 @@
                     HeightRequest="54"
                     WidthRequest="230"
                     Margin="30,20,0,10"
-                    Command="{Binding Insertarcommand}"/>
+                    />
             </StackLayout>
         </StackLayout>
        

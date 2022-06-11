@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace micro_inventario.VistaModelo
+namespace micro_inventario.Vistas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class subir_imagen : ContentPage
     {
-        public LoginPage()
+        public subir_imagen()
         {
             InitializeComponent();
         }

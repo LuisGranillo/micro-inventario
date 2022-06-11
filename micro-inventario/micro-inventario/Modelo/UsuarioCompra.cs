@@ -6,7 +6,7 @@ using SQLite;
 
 namespace micro_inventario.Modelo
 {
-     class UsuarioCompra
+    public class UsuarioCompra
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }

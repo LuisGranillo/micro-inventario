@@ -1,4 +1,5 @@
-﻿using micro_inventario.Modelo;
+﻿using micro_inventario.Datos;
+using micro_inventario.Modelo;
 using micro_inventario.VistaModelo;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace micro_inventario.Vistas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Agregarcompra : ContentPage
     {
-        public Agregarcompra(Mproductos parametros)
+        public Agregarcompra(Producto parametros)
         {
             InitializeComponent();
             BindingContext = new VMagregarcompra(Navigation, parametros);

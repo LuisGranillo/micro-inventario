@@ -15,7 +15,7 @@ namespace micro_inventario.VistaModelo
         #region VARIABLES
         string _Texto;
         int _index;
-        List<Mproductos> _listaproductos;
+        List<Producto> _listaproductos;
         #endregion
         #region CONSTRUCTOR
         public VMcompras(INavigation navigation, StackLayout Carrilderecho, StackLayout Carrilizquierdo)
@@ -30,7 +30,7 @@ namespace micro_inventario.VistaModelo
             get { return _Texto; }
             set { SetValue(ref _Texto, value); }
         }
-        public List<Mproductos> Listaproductos
+        public List<Producto> Listaproductos
         {
             get { return _listaproductos; }
             set { SetValue(ref _listaproductos, value); }
@@ -39,8 +39,9 @@ namespace micro_inventario.VistaModelo
         #region PROCESOS
         public async Task Mostrarproductos(StackLayout Carrilderecho, StackLayout Carrilizquierdo)
         {
-            var funcion = new Dproductos();
-            Listaproductos = await funcion.MostrarProductos();
+            var produList = await App.SQLiteDB.ObtenerProductosAsync();
+
+            Listaproductos =  produList;
             var box = new BoxView
             {
                 HeightRequest=60,
@@ -58,7 +59,7 @@ namespace micro_inventario.VistaModelo
             }
 
         }
-        public void DibujarProductos(Mproductos item,int index,StackLayout Carrilderecha,StackLayout carrilizquiderda)
+        public void DibujarProductos(Producto item,int index,StackLayout Carrilderecha,StackLayout carrilizquiderda)
         {
             var _ubicacion = Convert.ToBoolean(index % 2);
             var carril = _ubicacion ? Carrilderecha : carrilizquiderda;
@@ -77,14 +78,14 @@ namespace micro_inventario.VistaModelo
             };
             var img = new Image
             {
-                                     Source = item.Icono,
+                                     Source = item.Imagen,
                                            HeightRequest = 150,
                                            HorizontalOptions = LayoutOptions.Center,
                                            Margin = new Thickness (0,10),
             };
             var labelprecio = new Label
             {
-                Text = "$"+item.Precio,
+                Text = "$"+item.precio,
                                            FontAttributes = FontAttributes.Bold,
                                            FontSize = 22,
                                            Margin = new Thickness (0,10),
@@ -99,7 +100,7 @@ namespace micro_inventario.VistaModelo
             };
             var labelpeso = new Label
             {
-                                          Text = item.Peso,
+                                          Text= item.UnidadMedida.ToString(),
                                            FontSize = 13,
                                            TextColor =Color.FromHex ("#CCCCCC"),
                                            CharacterSpacing = 1

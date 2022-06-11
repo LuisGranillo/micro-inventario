@@ -7,7 +7,7 @@ using micro_inventario.Datos;
 
 namespace micro_inventario.Modelo
 {
-     class ProductoCategoria
+  public   class ProductoCategoria
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }

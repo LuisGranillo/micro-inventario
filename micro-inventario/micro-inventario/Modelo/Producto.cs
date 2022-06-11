@@ -8,7 +8,7 @@ using SQLiteNetExtensions.Attributes;
 namespace micro_inventario.Datos
 {
   
-        class Producto
+      public  class Producto
         {
             [PrimaryKey, AutoIncrement]
             public int IdProducto { get; set; }

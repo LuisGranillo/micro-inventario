@@ -6,7 +6,7 @@ using SQLiteNetExtensions.Attributes;
 
 namespace micro_inventario.Modelo
 {
-     class Rol
+    public class Rol
     {
         [PrimaryKey, AutoIncrement]
         public int IdRol { get; set; }

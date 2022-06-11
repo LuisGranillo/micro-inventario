@@ -6,9 +6,9 @@ using micro_inventario.Modelo;
 using System.Threading.Tasks;
 using micro_inventario.Datos;
 
-namespace Sprint1.Data
+namespace micro_inventario.Datos
 {
-    class SQLiteCon
+    public class SQLiteCon
     {
         SQLiteAsyncConnection db;
 
