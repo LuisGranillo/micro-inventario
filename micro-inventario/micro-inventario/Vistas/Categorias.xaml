@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Xamd.ImageCarousel.Forms.Plugin.Abstractions;assembly=Xamd.ImageCarousel.Forms.Plugin.Abstractions"
+             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="micro_inventario.Vistas.Categorias"
+             Title="Categorías">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="StackStyle" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="#4b69a0"/>
+            </Style>
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="YellowGreen"/>
+                <Setter Property="FontAttributes" Value="Italic" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Green"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+        <Grid HorizontalOptions="Fill">
+            <cv:CarouselViewControl x:Name="cvWalkthrough" ItemsSource="{Binding WalkthroughItems}" AnimateTransition="True">
+                <cv:CarouselViewControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalOptions="Fill">
+                            <Image Source="{Binding Image}" Aspect="Fill"/>
+                            <StackLayout Orientation="Vertical" Spacing="20" HorizontalOptions="Start" VerticalOptions="End">
+                                <Frame HasShadow="False" BackgroundColor="#FF0088" CornerRadius="15"/>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </cv:CarouselViewControl.ItemTemplate>
+            </cv:CarouselViewControl>
+
+
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center" VerticalOptions="End">
+                    <controls:ImageCarousel x:Name="imgSlider" HeightRequest="400" WidthRequest="400"/>
+                    <Label x:Name="cate"/>
+                    <Button x:Name="consultar" Text="Consultar" BackgroundColor="Aqua" Clicked="consultar_Clicked"/>
+                </StackLayout>
+                <Entry x:Name="txtidCategoria" IsVisible="False"/>
+                <Entry x:Name="txtNombre" Placeholder="Nombre Categoría" BackgroundColor="White"/>
+                <Entry x:Name="txtDescripcion" Placeholder="Descripción Categoría" BackgroundColor="White"/>
+                <Entry x:Name="txtFechaRegistro" Placeholder="Fecha de Registro" BackgroundColor="White"/>
+                <DatePicker x:Name="datepicker" Format="d" DateSelected="datepicker_DateSelected"/>
+                <Button x:Name="mostrarFecha" Text="Mostrar Fecha" BackgroundColor="Aqua" TextColor="Black" Clicked="mostrarFecha_Clicked"/>
+                <Button x:Name="guardarCategoria" Text="Guardar Categoría" BackgroundColor="Aqua" TextColor="Black" Clicked="guardarCategoria_Clicked"/>
+                <Button x:Name="btnActualizar" Text="Actualizar Categoría" Clicked="btnActualizar_Clicked" />
+                <Button x:Name="btnEliminar" Text="Eliminar" Clicked="btnEliminar_Clicked"/>
+
+                <ListView x:Name="lstCategorias" ItemSelected="lstCategorias_ItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *, *, *, *, *" BackgroundColor="Wheat">
+                                    <Label Text="{Binding IdCategoria}"  Grid.Row="0" Grid.Column="1" TextColor="Blue" LineBreakMode="NoWrap"
+                                   Style="{StaticResource LabelStyle}"/>
+                                    <Label Text="{Binding Nombre}" Grid.Row="0" Grid.Column="2" TextColor="Gray" LineBreakMode="NoWrap"
+                                   Style="{StaticResource LabelStyle}"/>
+                                    <Label Text="{Binding Descripcion}" Grid.Row="0" Grid.Column="3" TextColor="Gray" LineBreakMode="NoWrap"
+                                   Style="{StaticResource LabelStyle}"/>
+                                    <Label Text="{Binding FechaRegistro}" Grid.Row="0" Grid.Column="4" TextColor="Gray" LineBreakMode="NoWrap"
+                                   Style="{StaticResource LabelStyle}"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+        </Grid>
+</ContentPage>

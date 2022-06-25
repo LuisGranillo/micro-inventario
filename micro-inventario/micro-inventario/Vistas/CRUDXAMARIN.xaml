@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="micro_inventario.Vistas.CRUDXAMARIN"
+              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="StackStyle" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="#4b69a0"/>
+            </Style>
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="YellowGreen"/>
+                <Setter Property="FontAttributes" Value="Italic" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Green"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <ScrollView>
+            <StackLayout Style="{StaticResource StackStyle}">
+                <Frame BackgroundColor="DarkBlue" Padding="24" CornerRadius="0">
+                    <Label Text="Micro-Inventario" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                    
+                </Frame>
+                <Label Text="Dar de alta productos" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="NoWrap"
+                                   Style="{StaticResource LabelStyle}"/>
+                <Image Source="https://planetaoffice.net/wp-content/uploads/2020/06/Inventarios-compressor.png">
+                    <Image.Clip>
+                        
+                        <EllipseGeometry Center="50,50"
+                             RadiusX="300"
+                             RadiusY="300"
+                                >
+                        </EllipseGeometry>
+                    </Image.Clip>
+                </Image>
+          
+            <Entry x:Name="txtidProducto" IsVisible="False"/>
+            <Entry x:Name="txtNombre" Placeholder="Nombre Producto"/>
+            <Entry x:Name="txtDescripcion" Placeholder="Descripcion Producto"/>
+            <Entry x:Name="txtPrecio" Placeholder="Precio del Producto"/>
+            <Entry x:Name="txturlimage" Placeholder="Introduce URL imagen"/>
+            <Entry x:Name="txtunidadm"  Placeholder="Introduce la unidad de medida"/>
+            <Entry x:Name="txtmarca"  Placeholder=" Introduce la Marca del Producto"/>
+            <Entry x:Name="txtCantidadesExistentes"  Placeholder=" Introduce la cantidad disponible del producto"/>
+            <DatePicker MinimumDate="01/01/2022"
+            MaximumDate="12/31/2022"
+            Date="09/06/2022" 
+                        x:Name="txtcaducidad"/>
+       
+          
+          
+            <Button x:Name="btnRegistrar" Text="Registrar Producto" Clicked="btnRegistrar_Clicked"/>
+            <Button x:Name="btnActualizar" Text="Actualizar Producto " Clicked="btnActualizar_Clicked"  IsVisible="False"/>
+            <Button x:Name="btnEliminar" Text="Eliminar" Clicked="btnEliminar_Clicked"  IsVisible="False"/>
+            <Button x:Name="Subir_imagen" Text="Subir imagen" Clicked="Subir_imagen_Clicked"  />
+            <Button x:Name="Subir_imagen_crud" Text="Subir imagen" Clicked="Subir_imagen_crud_Clicked" IsVisible="False" />
+            <Button x:Name="Catalogo" Text="Ver productos" Clicked="Catalogo_Clicked"/>
+            <Button x:Name="Categorias" Text="Categorias" Clicked="Categorias_Clicked"/>
+
+        
+                <ListView x:Name="lstProductos" ItemSelected="lstProductos_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *, *, *, *, *">
+                                <Label Text="{Binding IdProducto}"  Grid.Row="0" Grid.Column="1" TextColor="Blue" LineBreakMode="NoWrap"
+                                   Style="{StaticResource LabelStyle}"/>
+                                <Label Text="{Binding Nombre}" Grid.Row="0" Grid.Column="2" TextColor="Gray" LineBreakMode="NoWrap"
+                                   Style="{StaticResource LabelStyle}"/>
+                                <Label Text="{Binding Descripcion}" Grid.Row="0" Grid.Column="3" TextColor="Gray" LineBreakMode="NoWrap"
+                                   Style="{StaticResource LabelStyle}"/>
+                                <Label Text="{Binding Precio}" Grid.Row="0" Grid.Column="4" TextColor="Gray" LineBreakMode="NoWrap"
+                                   Style="{StaticResource LabelStyle}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+               
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
