@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vistamodelo="clr-namespace:micro_inventario.VistaModelo" x:DataType="vistamodelo:VMagregarcompra"
+             x:Class="micro_inventario.Vistas.Agregarcompra"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.IconColor="White"
+ xmlns:transicion="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Image
+            Source="https://i.ibb.co/sKY7S9J/flecha-regreso.png"
+             HeightRequest="20"
+               Margin="20"
+               HorizontalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Volvercommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+            <StackLayout Padding="36,15"
+                     Spacing="20">
+                <Image Source="{Binding parametrosrecibe.Imagen}"
+                   Margin="0,0,0,30"
+                   HeightRequest="130"
+                       transicion:Transition.Name="producto"/>
+                <Label Text="{Binding parametrosrecibe.Descripcion}"
+                   FontAttributes="Bold"
+                   FontSize="36"
+                   TextColor="Black"/>
+                <Label
+                    
+                Text="{Binding parametrosrecibe.Marca}"
+                CharacterSpacing="1"
+                TextColor="Gray"
+                Margin="0,-8,0,4"
+                FontSize="14"/>
+                <StackLayout Orientation="Horizontal"
+                             Padding="36,0"
+                             HorizontalOptions="FillAndExpand"
+                              VerticalOptions="EndAndExpand"
+                             Margin="0,0,0,20">
+                    <Grid HorizontalOptions="StartAndExpand"
+                  VerticalOptions="Center">
+                        <Frame
+                Padding="0"
+                BackgroundColor="#EEEEFF"
+                CornerRadius="70"
+                HasShadow="False"
+                HeightRequest="40"
+                VerticalOptions="Center"
+                WidthRequest="100">
+                        </Frame>
+                        <Label Text="-"
+                           FontSize="36"
+                           HorizontalOptions="Start"
+                           TextColor="Black"
+                           Margin="16,-2,0,6">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Disminuircommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="{Binding Cantidad}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           />
+
+                        <Label
+                Text="+"
+                FontSize="21"
+                HorizontalOptions="End"
+                TextColor="Black"
+                Margin="0,-4,16,0"
+                VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Aumentarcommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                    </Grid>
+
+                    <Label Text="{Binding Preciotexto}"
+                   FontAttributes="Bold"
+                   FontSize="36"
+                   TextColor="Black"/>
+                </StackLayout>
+                <Label Text="Descripcion del producto"
+                   FontSize="18"
+                   TextColor="Black"
+                   Margin="0,14,0,0"
+                   />
+                <Label Text="{Binding Descripcion_prd}"
+                   TextColor="Gray"
+                   FontSize="15"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                     Padding="36,0"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="EndAndExpand"
+                     Margin="0,0,0,20">
+
+                <Image Source="https://i.ibb.co/R9brY8g/amor.png"
+                       HeightRequest="30"
+                    />
+
+                <Button Text="Agregar a venta"
+                    BackgroundColor="Red"
+                    CornerRadius="40"
+                   
+                    TextTransform="None"
+                    HeightRequest="54"
+                    WidthRequest="230"
+                    Margin="30,20,0,10"
+                    Command="{Binding Insertarcommand}"
+                    />
+            </StackLayout>
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

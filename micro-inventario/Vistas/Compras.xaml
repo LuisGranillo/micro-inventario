@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="micro_inventario.Vistas.Compras"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:transicion="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions">
+    <StackLayout BackgroundColor="#050506">
+        <Grid RowDefinitions="*,100"
+              VerticalOptions="FillAndExpand"
+              x:Name="GridProductos">
+            <pancake:PancakeView
+                CornerRadius="0,0,40,40"
+
+                BackgroundColor="#EFEFEC">
+                <ScrollView 
+                            >
+                    <Grid ColumnDefinitions="*,*"
+                                    Margin="8,0,8,0"
+                       RowDefinitions="80,*"
+                          >
+                        <StackLayout Orientation="Horizontal"
+                                 Grid.ColumnSpan="2">
+                            <Image Source="https://i.ibb.co/GPhT7YB/volver.png"
+                       HeightRequest="20"
+                                   Margin="10,0,0,0"/>
+                    
+                            <Entry x:Name="Buscar" Placeholder="Buscar producto por nombre "/> <!--Buscador por nombre de producto-->
+                            <Button x:Name="Buscarboton" Clicked="Buscar_Clicked" Text="Buscar"/> <!--Botón buscar por nombre de producto-->
+                            <Image Source="https://i.ibb.co/dG9XL0Z/ecualizador.png"
+                       HeightRequest="30"
+                       HorizontalOptions="EndAndExpand"
+                                   Margin="0,0,10,0"/>
+                            <Label Text="Productos de abarrotes"
+                       VerticalOptions="Center"
+                       FontSize="18"
+                       TextColor="#3D3D3D"
+                       Margin="30,0,0,0"/>
+                        </StackLayout>
+                        <StackLayout  Grid.Column="0"
+                                     Grid.Row="1"
+                                    
+                                     x:Name="carrilizquierda">
+                            <Frame HeightRequest="290"
+                                  CornerRadius="10"
+                                   Margin="8"
+                                   HasShadow="False"
+                                   BackgroundColor="White"
+                                   Padding="22">
+                                <StackLayout >
+                                    <Image Source="https://i.ibb.co/N7QNc6T/arroz.png"
+                                           HeightRequest="150"
+                                           HorizontalOptions="Center"
+                                           Margin="0,10"/>
+                                    <Label Text="$8.30"
+                                           FontAttributes="Bold"
+                                           FontSize="22"
+                                           Margin="0,10"
+                                           TextColor="#333333"/>
+                                    <Label Text="Manzana"
+                                           FontSize="16"
+                                           TextColor="Black"
+                                           CharacterSpacing="1"/>
+                                    <Label Text="500g"
+                                           FontSize="13"
+                                           TextColor="#CCCCCC"
+                                           CharacterSpacing="1"/>
+                                </StackLayout>
+                            </Frame>
+
+                        </StackLayout>
+                        <StackLayout Grid.Column="1"
+                                     Grid.Row="1"
+                                   
+                                     x:Name="Carrilderecha">
+                        </StackLayout>
+                    </Grid>
+                </ScrollView>
+
+            </pancake:PancakeView>
+            <!--#region Panelcontador -->
+            <StackLayout Grid.Row="1"
+                        BackgroundColor="#050506" 
+                         Orientation="Horizontal"
+                       Margin="20,0,10,0"  
+                         x:Name="PanelContador">
+                <StackLayout.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Up" Swiped="DeslizarPanelContador"/>
+                </StackLayout.GestureRecognizers>
+                <Label Text="Vent"
+                       FontSize="30"
+                       WidthRequest="140"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       TextColor="White"/>
+                <CollectionView HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="Center"
+                           
+                              x:Name="mycollectionview" >
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                           Orientation="Horizontal" 
+                            Span="1"
+                            HorizontalItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="4,0"
+                                  WidthRequest="30"
+                                  >
+
+                                <Image  Source="{Binding Imagen}"
+                                           Margin="0,6"
+                                           WidthRequest="30"
+            
+                                           HorizontalOptions="Center"
+                                          transicion:Transition.Group="{Binding idProducto}"
+                                        transicion:Transition.Name="productos"
+                              
+                                   />
+
+                                <Image  Source="https://e7.pngegg.com/pngimages/833/426/png-clipart-shopping-cart-shopping-cart.png"
+                                           Margin="0,6"
+                                           WidthRequest="30"
+                                   HorizontalOptions="FillAndExpand"
+                                        transicion:Transition.Group="{Binding idProducto}"
+                                        transicion:Transition.Name="productos"
+                                   />
+
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Frame HeightRequest="40"
+                       WidthRequest="60"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       CornerRadius="30"
+                       Padding="5"
+                       BackgroundColor="#FABC4B">
+                    <Label Text="1"
+                           VerticalOptions="Center"
+                           FontSize="15"
+                           FontAttributes="Bold"/>
+                </Frame>
+            </StackLayout>
+            <!--#endregion-->
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer />
+            </Grid.GestureRecognizers>
+        </Grid>
+        <!--#region Paneldedetalledecompra -->
+        <StackLayout x:Name="paneldecompra"
+                     VerticalOptions="CenterAndExpand"
+                     IsVisible="{Binding IsvisiblePanelDC}">
+            <StackLayout.GestureRecognizers>
+
+                <SwipeGestureRecognizer Direction="Down"
+                                        Swiped="Deslizar"
+                                       />
+            </StackLayout.GestureRecognizers>
+            <Label Text="Vent"
+                  TextColor="White"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   Padding="40,28,40,40"
+                   HeightRequest="120"
+                   WidthRequest="100"/>
+
+            <Image Source=""
+                                       WidthRequest="26"
+                                       Margin="0,10"
+                                       HorizontalOptions="Center"
+                            x:Name="imagen_pr_list"/>
+            <CollectionView HeightRequest="300"
+                            VerticalOptions="Center"
+                            
+                            ItemsSource="{Binding ListaPreviaCompra}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="0,12"
+                                     Orientation="Horizontal">
+                            <Grid WidthRequest="62">
+
+                            </Grid>
+
+
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <StackLayout 
+                                     Orientation="Horizontal"
+                Margin="6,0,2,0"
+                                   >
+                <Grid WidthRequest="80">
+                    <Frame 
+                                       CornerRadius="24"
+                                     BackgroundColor="#555555"
+                        HorizontalOptions="Center"
+
+                                      >
+
+                    </Frame>
+                    <Image Source="https://i.ibb.co/fdVCdPz/camion.png"
+                                       HeightRequest="26"
+                       
+                                     />
+
+                </Grid>
+                <StackLayout Margin="20,0,0,0">
+                    <Label Text="Venta en proceso"
+                           TextColor="White"
+                           />
+                    <Label Text="Este apartado tiene la finalidad de llevar un control sobre las ventas realizadas."
+                           TextColor="Gray"/>
+                    <Label Text=""
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   x:Name="productos"/>
+                    <Image Source=""
+                                       WidthRequest="26"
+                                       Margin="0,10"
+                                       HorizontalOptions="Center"
+                           x:Name="imagen_produ"/>
+                    <Label Text=""
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                            x:Name="cantidadpro"/>
+                    <Label Text="x"
+                                   TextColor="White"
+                                   VerticalOptions="Center"
+                                    HorizontalOptions="Center"/>
+                    <Label Text=""
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                               x:Name="totalpr"/>
+                    <Label Text="Precio del producto"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                               />
+                    <Label Text=""
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                           x:Name="precio_or"
+                               />
+                </StackLayout>
+                <Label Text="$∞ "
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       WidthRequest="100"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         Margin="50,50,50,0">
+                <Label Text="Total:"
+                       TextColor="White"
+                       FontSize="30"
+                       FontAttributes="Bold"/>
+                <Label Text=""
+                       TextColor="White"
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       x:Name="pagar"/>
+
+            </StackLayout>
+            <Button Text="Realizar registro de venta"
+                    BackgroundColor="Red"
+                    CornerRadius="30"
+                    Margin="15,0,15,-100"
+            VerticalOptions="EndAndExpand"
+                    HeightRequest="60"
+                    />
+        </StackLayout>
+        <!--#endregion-->
+    </StackLayout>
+</ContentPage>
